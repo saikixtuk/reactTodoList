@@ -7,12 +7,6 @@ import "firebase/firestore"
 // Firebaseの設定
 //ここに先ほど作成したFirebaseプロジェクトの設定情報をかく
 const firebaseConfig = {
-  apiKey: "AIzaSyBX7HR4x3NlbKultf440Biw6upMZ3yPsPc",
-  authDomain: "todoapp-b3413.firebaseapp.com",
-  projectId: "todoapp-b3413",
-  storageBucket: "todoapp-b3413.appspot.com",
-  messagingSenderId: "321879341357",
-  appId: "1:321879341357:web:65da8a219e7b894275fba4"
 };
 
 if (!firebase.apps.length) {
