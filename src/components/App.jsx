@@ -3,13 +3,11 @@ import Form from './Form';
 import List from './List';
 import firebase from "firebase/app"
 import "firebase/firestore"
+import {firebaseConfig} from "./firebase";
 
-// Firebaseの設定
-//ここに先ほど作成したFirebaseプロジェクトの設定情報をかく
-const firebaseConfig = {
-};
 
 if (!firebase.apps.length) {
+  // firebaseの初期化
   firebase.initializeApp(firebaseConfig);
 }
 var db = firebase.firestore();
@@ -29,8 +27,12 @@ export default class App extends Component {
   handleAdd(e) {
     e.preventDefault();
     if (e.target.title.value != '') { 
+      let now = firebase.firestore.Timestamp.now(); 
+      console.log(now);
+
       db.collection("content").add({
-        text: e.target.title.value
+        text: e.target.title.value,
+        timestamp: now
       })
         .catch((error) => {
           console.log(error);
@@ -69,7 +71,9 @@ export default class App extends Component {
       var buff = [];
       var db = firebase.firestore();
       console.log(db);
-      db.collection("content").get().then((query) => {
+      db.collection("content")
+      .orderBy('timestamp', 'desc')
+      .get().then((query) => {
         query.forEach((doc) => {
           var data = doc.data();
           buff.push([doc.id, data.text]);
