@@ -10,6 +10,8 @@ if (!firebase.apps.length) {
   // firebaseの初期化
   firebase.initializeApp(firebaseConfig);
 }
+
+console.log(process.env);
 var db = firebase.firestore();
 
 export default class App extends Component {
@@ -26,7 +28,7 @@ export default class App extends Component {
   // データ保存
   handleAdd(e) {
     e.preventDefault();
-    if (e.target.title.value != '') { 
+    if (e.target.title.value !== '') { 
       let now = firebase.firestore.Timestamp.now(); 
       console.log(now);
 

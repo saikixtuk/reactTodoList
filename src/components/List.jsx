@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import firebase from "firebase";
 import "firebase/storage";
 
 let style = { maxWidth: '700px' };
